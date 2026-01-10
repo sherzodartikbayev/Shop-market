@@ -1,0 +1,29 @@
+{
+	"name": "e-commerce",
+	"version": "1.0.0",
+	"main": "app.js",
+	"scripts": {
+		"start": "npm app.js",
+		"dev": "nodemon app.js"
+	},
+	"keywords": [],
+	"author": "Sherzod Artikbayev",
+	"license": "ISC",
+	"description": "E-commerce app build in Node.js and ExpressJS",
+	"dependencies": {
+		"bcrypt": "^6.0.0",
+		"dotenv": "^17.2.3",
+		"express": "^5.2.1",
+		"express-handlebars": "^8.0.3",
+		"express-session": "^1.18.2",
+		"jsonwebtoken": "^9.0.3",
+		"mongoose": "^9.0.2",
+		"mysql2": "^3.16.0",
+		"nodemailer": "^7.0.12",
+		"sequelize": "^6.37.7",
+		"uuid": "^13.0.0"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.11"
+	}
+}

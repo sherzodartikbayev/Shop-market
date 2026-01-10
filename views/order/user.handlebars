@@ -1,0 +1,56 @@
+<h1 class='mb-4'>Orders</h1>
+
+{{#if orders.length}}
+	{{#each orders}}
+		<div class='card mb-4 shadow-sm'>
+			<div
+				class='card-header d-flex justify-content-between align-items-center px-4 py-2'
+			>
+				<strong class='fw-bold'>Order ID: </strong>
+				<span class='text-muted'>{{this._id}}</span>
+			</div>
+
+			<div class='card-body'>
+				<ul class='list-group mb-3'>
+					{{#each this.products}}
+						<li
+							class='list-group-item d-flex justify-content-between align-items-center'
+						>
+							<div
+								class='d-flex justify-content-center align-items-center gap-2'
+							>
+								<div class=''>
+									<img
+										src={{this.product.image}}
+										alt={{this.product.title}}
+										width='100'
+									/>
+								</div>
+
+								<div class=''>
+									<h6>{{this.product.title}}</h6>
+									<small class='text-muted'>Price:
+										{{formatUSD this.product.price}}
+										x
+										{{this.quantity}}
+									</small></div>
+							</div>
+							<span class='text-success fw-bold'>
+								{{calcTotal this.product.price this.quantity}}
+							</span>
+						</li>
+					{{/each}}
+				</ul>
+
+				<div class='d-flex justify-content-between'>
+					<span class='text-muted'>Date: {{formatDate this.createdAt}}</span>
+					<h3>Total: {{formatUSD this.totalPrice}}</h3>
+				</div>
+			</div>
+		</div>
+	{{/each}}
+{{else}}
+	<div class='alert alert-info text-center'>
+		You have no orders yet.
+	</div>
+{{/if}}
