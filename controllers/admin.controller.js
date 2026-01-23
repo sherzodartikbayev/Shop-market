@@ -8,7 +8,7 @@ class AdminController {
 	async addProduct(req, res) {
 		try {
 			const { title, image, price } = req.body
-			await productModel.create({ title, image, price })
+			await productModel.create({ title, image: req.file.filename, price })
 			res.redirect('/admin/products')
 		} catch (err) {
 			console.error(err)

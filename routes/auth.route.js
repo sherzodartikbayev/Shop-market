@@ -8,7 +8,7 @@ router.get('/register', authController.renderRegister)
 router.post('/register', authController.register)
 
 router.get('/verify/:verifyToken', authController.verify)
-router.get('/logged-out', authController.loggedOut)
+router.get('/logged-out', authController.loggedOut) 
 
 router.get('/logout', authController.logout)
 
