@@ -27,7 +27,13 @@ class AdminController {
 	}
 
 	async editProduct(req, res) {
-		await productModel.findByIdAndUpdate(req.params.id, req.body)
+		let image
+
+		if (req.file) {
+			image = req.file.filename
+		}
+
+		await productModel.findByIdAndUpdate(req.params.id, { ...req.body, image })
 		res.redirect('/admin/products')
 	}
 

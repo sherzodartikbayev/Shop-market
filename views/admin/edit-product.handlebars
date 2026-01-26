@@ -1,6 +1,10 @@
 <h1>Edit {{product.title}}</h1>
 
-<form action='/admin/edit-product/{{product._id}}' method='post'>
+<form
+	action='/admin/edit-product/{{product._id}}'
+	method='post'
+	enctype='multipart/form-data'
+>
 	<div class='form-floating mb-3'>
 		<input
 			class='form-control'
@@ -12,14 +16,17 @@
 		<label for='title'>Title</label>
 	</div>
 
-	<div class='form-floating mb-3'>
-		<input
-			class='form-control'
-			id='image'
-			placeholder='Image URL'
-			name='image'
-			value={{product.image}}
-		/>
+	<div class='mb-3'>
+		{{#if product.image}}
+			<img
+				src='http://localhost:8080/images/{{product.image}}'
+				alt={{product.title}}
+				class='image-thumbnail'
+				width='136px'
+			/>
+		{{/if}}
+
+		<input type='file' class='form-control form-control-lg' name='image' />
 		<label for='image'>Image</label>
 	</div>
 

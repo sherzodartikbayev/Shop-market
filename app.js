@@ -10,23 +10,12 @@ const adminMiddleware = require('./middlewares/admin.middleware')
 const authMiddleware = require('./middlewares/auth.middleware')
 const errorMiddleware = require('./middlewares/error.middleware')
 const AppError = require('./utils/error')
-const multer = require('multer')
 
 const app = express()
-
-const storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, 'public/images')
-	},
-	filename: function (req, file, cb) {
-		cb(null, Date.now() + file.originalname)
-	},
-})
 
 // middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(multer({ storage }).single('myFile'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(
 	session({
