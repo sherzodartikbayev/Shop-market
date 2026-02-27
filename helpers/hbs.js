@@ -19,9 +19,9 @@ const hbsHelper = {
 		return d.toISOString().split('T')[0]
 	},
 
-	eq: (a, b) => a === b,
+	eq: (a, b) => a == b,
 
-	add: (a, b) => a + b,
+	add: (a, b) => +a + +b,
 
 	sub: (a, b) => a - b,
 

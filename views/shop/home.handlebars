@@ -30,13 +30,15 @@
 
 	<nav>
 		<ul class='pagination justify-content-center mt-4'>
-			<li class='page-item'>
-				<a class='page-link' href='?page=1'>Prev</a>
+			<li class='page-item {{#if (eq currentPage 1)}}disabled{{/if}}'>
+				<a class='page-link' href='?page={{sub currentPage 1}}'>Prev</a>
 			</li>
-			<li class='page-item'><a class='page-link' href='#'>1</a></li>
-			<li class='page-item'><a class='page-link' href='#'>2</a></li>
-			<li class='page-item'><a class='page-link' href='#'>3</a></li>
-			<li class='page-item'> <a class='page-link' href='?page=2'>Next</a></li>
+
+			{{#each (range 1 totalPages)}}
+				<li class='page-item {{#if (eq ../currentPage this)}}active{{/if}}'><a class='page-link' href='?page={{this}}'>{{this}}</a></li>
+			{{/each}}
+
+			<li class='page-item  {{#if (eq currentPage totalPages)}}disabled{{/if}}'> <a class='page-link' href='?page={{add currentPage 1}}'>Next</a></li>
 		</ul>
 	</nav>
 </div>
