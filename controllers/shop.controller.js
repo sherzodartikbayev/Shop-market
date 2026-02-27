@@ -3,10 +3,28 @@ const productModel = require('../models/product.model')
 
 class ShopController {
 	async renderHomePage(req, res) {
-		const products = await productModel.find().lean()
+		const page = req.query.page || 1
+		const limit = 2
+		const skip = (page - 1) * limit
+
+		const [products, countProducts] = await Promise.all([
+			productModel
+				.find()
+				.sort({ createdAt: -1 })
+				.skip(skip)
+				.limit(limit)
+				.lean(),
+			productModel.countDocuments(),
+		])
+
+		const totalPages = Math.max(Math.ceil(countProducts / limit), 1)
+
+		// const products = await productModel.find().lean()
 		res.render('shop/home', {
 			title: 'Shop',
 			products,
+			totalPages,
+			currentPage: page,
 		})
 	}
 
@@ -57,7 +75,7 @@ class ShopController {
 		}
 
 		const existingItem = cart.items.find(
-			i => i.product.toString() === productId
+			i => i.product.toString() === productId,
 		)
 
 		if (existingItem) {
